@@ -1,0 +1,107 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>JobPortal | Find Your Dream Job</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header with Dark Mode Toggle -->
+    <header class="header">
+      <div class="logo-area">
+        <h1><i class="fas fa-briefcase"></i> JobPortal</h1>
+      </div>
+      <button id="darkModeToggle" class="dark-toggle" aria-label="Dark mode">
+        <i class="fas fa-moon"></i> <span>Dark</span>
+      </button>
+    </header>
+
+    <!-- Filters & Search Bar -->
+    <div class="filters-panel">
+      <div class="search-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search by job title, company, or location..." class="search-input">
+      </div>
+      <div class="filter-group">
+        <select id="companyFilter" class="filter-select">
+          <option value="all">All Companies</option>
+        </select>
+        <select id="roleFilter" class="filter-select">
+          <option value="all">All Roles</option>
+          <option value="Developer">Developer</option>
+          <option value="Designer">Designer</option>
+          <option value="Manager">Manager</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Sales">Sales</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Main content: Jobs + Saved Jobs sidebar (Grid/Flex) -->
+    <div class="main-dashboard">
+      <!-- Job Listings Section -->
+      <section class="jobs-section">
+        <div class="section-header">
+          <h2><i class="fas fa-list-ul"></i> Available Jobs</h2>
+          <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+            <i class="fas fa-spinner fa-pulse"></i> Loading jobs...
+          </div>
+        </div>
+        <div id="jobsContainer" class="jobs-grid"></div>
+        
+        <!-- Pagination Controls -->
+        <div class="pagination-controls" id="paginationControls">
+          <button id="prevPageBtn" class="pagination-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+          <span id="pageIndicator" class="page-indicator">Page 1</span>
+          <button id="nextPageBtn" class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
+        </div>
+      </section>
+
+      <!-- Saved Jobs Sidebar -->
+      <aside class="saved-section">
+        <div class="saved-header">
+          <h3><i class="fas fa-bookmark"></i> Saved Jobs <span id="savedCount">(0)</span></h3>
+          <button id="clearSavedBtn" class="clear-saved-btn" title="Clear all saved"><i class="fas fa-trash-alt"></i></button>
+        </div>
+        <div id="savedJobsList" class="saved-jobs-list">
+          <div class="empty-saved">No saved jobs yet. Click ♡ on any job card.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Modal Popup for Apply -->
+  <div id="applyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3 id="modalJobTitle">Job Title</h3>
+      <p id="modalCompanyName">Company Name</p>
+      <form id="applyForm">
+        <div class="form-group">
+          <label for="applicantName">Full Name *</label>
+          <input type="text" id="applicantName" required placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="applicantEmail">Email Address *</label>
+          <input type="email" id="applicantEmail" required placeholder="john@example.com">
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="submit-apply-btn">Submit Application</button>
+          <button type="button" class="cancel-modal-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast notification container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
